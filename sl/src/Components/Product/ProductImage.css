@@ -1,0 +1,29 @@
+.product-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-image {
+    width: 80%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.thumbnail-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.thumbnail-images img {
+    width: 75px; /* Dostosuj szerokość miniaturki */
+    height: auto;
+    margin: 5px; /* Dostosuj margines między miniaturkami */
+    cursor: pointer;
+}
+
+.thumbnail-images img.selected {
+    border: 2px solid blue; /* Dodatkowy styl dla wybranej miniaturki */
+}
