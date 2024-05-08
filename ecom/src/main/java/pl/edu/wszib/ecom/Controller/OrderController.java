@@ -3,6 +3,7 @@ package pl.edu.wszib.ecom.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.wszib.ecom.Exception.ResourceNotFound;
 import pl.edu.wszib.ecom.Model.Order;
@@ -21,6 +22,7 @@ import java.util.Set;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/orders")
+@PreAuthorize("permitAll()")
 public class OrderController {
     private BigDecimal calculateOrderValue(Set<OrderItem> orderItems) {
         BigDecimal orderValue = orderItems.stream().
@@ -38,9 +40,11 @@ public class OrderController {
     private OrderItemRepository orderItemRepo;
 
     @GetMapping("")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Order> getAllOrders() {return orderRepo.findAll();}
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteOrder(@PathVariable long id) {
         Order order = orderRepo.findById(id).orElseThrow(() -> new ResourceNotFound("ID not found in db " + id));
         orderRepo.delete(order);

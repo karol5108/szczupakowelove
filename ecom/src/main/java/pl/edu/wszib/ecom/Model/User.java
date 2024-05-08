@@ -1,10 +1,14 @@
 package pl.edu.wszib.ecom.Model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import pl.edu.wszib.ecom.Enum.UserRole;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Table(name= "users")
 public class User {
@@ -16,7 +20,7 @@ public class User {
     private String email;
     private String password;
     private String username;
-    private UserRole role;
+    private String roles;
 
     @Lob
     @Column(columnDefinition = "longblob")

@@ -30,10 +30,10 @@ import baner from "./slBANER.png"
 //     />
 // );
 const items = [
-    { image: pt, link: 'https://example.com/page1' },
-    { image: pg, link: 'https://example.com/page2' },
-    { image: z, link: 'https://example.com/page3' },
-    { image: a, link: 'https://example.com/page4' },
+    { image: pt, link: '/Twarde' },
+    { image: pg, link: '/Gumy' },
+    { image: z, link: '/Zestawy' },
+    { image: a, link: '/Akcesoria' },
     { image: baner, link: '#' },
 ];
 

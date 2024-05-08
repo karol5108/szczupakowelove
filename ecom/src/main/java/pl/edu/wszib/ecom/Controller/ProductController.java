@@ -1,8 +1,10 @@
 package pl.edu.wszib.ecom.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.AccessType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.wszib.ecom.Exception.ResourceNotFound;
 import pl.edu.wszib.ecom.Model.Product;
@@ -14,6 +16,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/products")
+@PreAuthorize("permitAll()")
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
@@ -25,6 +28,7 @@ public class ProductController {
         return productRepository.findAll();
     }
     @PostMapping("/add-new-product")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> addNewProduct(@RequestBody Product newProduct){
         productRepository.save(newProduct);
         return ResponseEntity.ok(newProduct);
@@ -40,6 +44,7 @@ public class ProductController {
 
     }
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteProd(@PathVariable long id){
         Product product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFound("ID not found in db " + id));
         productRepository.delete(product);
