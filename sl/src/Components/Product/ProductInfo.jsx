@@ -116,7 +116,7 @@ const ProductInfo = () => {
       <div className="flex flex-col md:flex-row -mx-4">
         <div className="md:flex-1 px-4">
           {/* Komponent wyświetlający obrazy produktu */}
-          <ProductImages product={p}/>
+          <ProductImages productName={name}/>
         </div>
         <div className="md:flex-1 px-4">
           {/* Komponent wyświetlający szczegóły produktu */}
