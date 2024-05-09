@@ -39,11 +39,12 @@ const ProductInfo = () => {
     const p = JSON.parse(localStorage.getItem("product"));
     const quantityOptions = [];
     const firstLetterCharCode = 'A'.charCodeAt(0);
-    if(p!== null){
-    for (let i = 0; i < p.colors; i++) {
+    // if(p!== null){
+    for (let i = 0; i < product.colors; i++) {
       const letter = String.fromCharCode(firstLetterCharCode + i);
       quantityOptions.push(letter);
-    }}
+    }
+  // }
     // useEffect(() => {
     //   const fetchData = async () => {
     //     try {
