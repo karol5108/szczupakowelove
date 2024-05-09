@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import './ProductImage.css';
-const ProductImages = ({ productName }) => {
+const ProductImages = ({ productName, productImg }) => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
     const handleImageClick = (index) => {
@@ -23,7 +23,7 @@ const ProductImages = ({ productName }) => {
                     ></iframe>
                 ) : (
                     <img
-                        src={`/${product.name}/${product.colorsImg[selectedImageIndex - 1]}`}
+                        src={`/${productName}/${productImg[selectedImageIndex - 1]}`}
                         // src={`https://ae01.alicdn.com/kf/${product.colorsImg[selectedImageIndex - 1]}`}
                         alt={`Color ${selectedImageIndex}`}
                         style={{ maxWidth: '100%', height: 'auto' }}
@@ -42,7 +42,7 @@ const ProductImages = ({ productName }) => {
                 ))}
             </div> */}
             <div className="thumbnail-images">
-  {product.colorsImg.map((img, index) => (
+  {productImg.map((img, index) => (
     <img
       key={index}
       src={`/${productName}/${img}`}

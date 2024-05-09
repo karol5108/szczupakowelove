@@ -9,12 +9,17 @@ import ShoppingCard from '../Order/ShoppingCard';
 const ProductInfo = () => {
     // const [product, setProduct] = useState();
     const { id } = useParams();
+
+    // product 
     const [name, setName] = useState("");
     const [price, setPrice] = useState(0);
     const [lowest30price, setLowest30price] = useState("");
     const [description, setDescription] = useState("");
     const [quantityInPack, setQuantityInPack] = useState(0);
     const [type, setType] = useState("");
+    const [colorsImg, setColorsImg] = useState([]);
+
+    // order
     const [order, setOrder] = useState(null);
     const [quantity, setQuantity] = useState(1); // State dla ilości
     const [color, setColor] = useState("A"); // State dla koloru
@@ -35,6 +40,7 @@ const ProductInfo = () => {
           setDescription(response.data.description);
           setQuantityInPack(response.data.quantity);
           setType(response.data.type);
+          setColorsImg(response.data.colorsImg);
           localStorage.setItem('product', JSON.stringify(response.data));
           console.log(localStorage.getItem('product'))
           for (let i = 0; i < response.data.colors; i++) {
@@ -116,7 +122,7 @@ const ProductInfo = () => {
       <div className="flex flex-col md:flex-row -mx-4">
         <div className="md:flex-1 px-4">
           {/* Komponent wyświetlający obrazy produktu */}
-          <ProductImages productName={name}/>
+          <ProductImages productName={name} productImg={colorsImg}/>
         </div>
         <div className="md:flex-1 px-4">
           {/* Komponent wyświetlający szczegóły produktu */}
@@ -137,7 +143,7 @@ const ProductInfo = () => {
           </div>
           <p className="text-gray-500">{description}</p>
           <br></br>
-          <p className="text-gray-500">Opakowanie: {quantity} sztuki</p>
+          <p className="text-gray-500">Opakowanie: {quantityInPack} sztuki</p>
           <p className="text-gray-500">Rodzaj przynęty: {type}</p>
           <div className="flex py-4 space-x-4">
             <div className="relative">
