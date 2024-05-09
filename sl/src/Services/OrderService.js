@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const ORDER_API_URL = 'http://localhost:8080/orders'
+const ORDER_API_URL = 'https://szczupakowelove.onrender.com/orders'
 
 class OrderService{
 
