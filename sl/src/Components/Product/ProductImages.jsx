@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import './ProductImage.css';
-const ProductImages = ({ product }) => {
+const ProductImages = ({ productName }) => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
     const handleImageClick = (index) => {
@@ -15,7 +15,7 @@ const ProductImages = ({ product }) => {
                 {selectedImageIndex === 0 ? (
                     <iframe
                         title="product-video"
-                        src={`/${product.name}/video.mp4`}
+                        src={`/${productName}/video.mp4`}
                         width="100%"
                         height="400"
                         frameBorder="0"
@@ -45,7 +45,7 @@ const ProductImages = ({ product }) => {
   {product.colorsImg.map((img, index) => (
     <img
       key={index}
-      src={`/${product.name}/${img}`}
+      src={`/${productName}/${img}`}
       alt={`Color ${index + 1}`}
       className={selectedImageIndex === index + 1 ? 'selected' : ''}
       onClick={() => handleImageClick(index + 1)}
