@@ -9,10 +9,12 @@ import ShoppingCard from '../Order/ShoppingCard';
 const ProductInfo = () => {
     // const [product, setProduct] = useState();
     const { id } = useParams();
-    const [product, setProduct] = useState(() => {
-      const savedProduct = localStorage.getItem('product');
-      return savedProduct ? JSON.parse(savedProduct) : null;
-    });
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState(0);
+    const [lowest30price, setLowest30price] = useState("");
+    const [description, setDescription] = useState("");
+    const [quantityInPack, setQuantityInPack] = useState(0);
+    const [type, setType] = useState("");
     const [order, setOrder] = useState(null);
     const [quantity, setQuantity] = useState(1); // State dla ilości
     const [color, setColor] = useState("A"); // State dla koloru
@@ -27,7 +29,12 @@ const ProductInfo = () => {
       ProductServiceInstance.getProductById(id)
         .then((response) => {
           console.log(response.data);
-          setProduct(response.data);
+          setName(response.data.name);
+          setPrice(response.data.price);
+          setLowest30price(response.data.lowest30price);
+          setDescription(response.data.description);
+          setQuantityInPack(response.data.quantity);
+          setType(response.data.type);
           localStorage.setItem('product', JSON.stringify(response.data));
           console.log(localStorage.getItem('product'))
           for (let i = 0; i < response.data.colors; i++) {
@@ -78,7 +85,7 @@ const ProductInfo = () => {
         console.log(error);
       });
     } else{
-      OrderServiceInstance.addToExistOrder(p.id, quantity, color, localStorage.getItem('orderId'))
+      OrderServiceInstance.addToExistOrder(id, quantity, color, localStorage.getItem('orderId'))
         .then((response) => {
           console.log(response.data);
           
@@ -113,25 +120,25 @@ const ProductInfo = () => {
         </div>
         <div className="md:flex-1 px-4">
           {/* Komponent wyświetlający szczegóły produktu */}
-          <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{p.name}</h2>
+          <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{name}</h2>
           <p className="text-gray-500 text-sm">By <a href="#" className="text-indigo-600 hover:underline">Spinpoler</a></p>
           <div className="flex items-center space-x-4 my-4">
             <div>
               {/* Komponent wyświetlający cenę produktu */}
               <div className="rounded-lg bg-gray-100 flex py-2 px-3">
-                <span className="font-bold text-indigo-600 text-3xl">{p.price}</span>
+                <span className="font-bold text-indigo-600 text-3xl">{price}</span>
                 <span className="text-indigo-400 mr-1 mt-1"> ZŁ</span>
               </div>
             </div>
             <div className="flex-1">
               {/* Komponent wyświetlający informacje o zniżce */}
-              <p className="text-gray-500 text-sm">Najniższa cena z 30 dni: {p.lowest30price}</p>
+              <p className="text-gray-500 text-sm">Najniższa cena z 30 dni: {lowest30price}</p>
             </div>
           </div>
-          <p className="text-gray-500">{p.description}</p>
+          <p className="text-gray-500">{description}</p>
           <br></br>
-          <p className="text-gray-500">Opakowanie: {p.quantity} sztuki</p>
-          <p className="text-gray-500">Rodzaj przynęty: {p.type}</p>
+          <p className="text-gray-500">Opakowanie: {quantity} sztuki</p>
+          <p className="text-gray-500">Rodzaj przynęty: {type}</p>
           <div className="flex py-4 space-x-4">
             <div className="relative">
               {/* Komponent wybierania ilości produktu */}
