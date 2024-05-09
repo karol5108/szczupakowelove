@@ -24,6 +24,9 @@ const ProductInfo = () => {
     const [quantity, setQuantity] = useState(1); // State dla ilości
     const [color, setColor] = useState("A"); // State dla koloru
     
+
+    const quantityOptions = [];
+    const firstLetterCharCode = 'A'.charCodeAt(0);
     
   
     useEffect(() => {
@@ -53,9 +56,8 @@ const ProductInfo = () => {
         });
     };
     //const productName = JSON.parse(localStorage.getItem("product")).name;
-    const p = JSON.parse(localStorage.getItem("product"));
-    const quantityOptions = [];
-    const firstLetterCharCode = 'A'.charCodeAt(0);
+    ///const p = JSON.parse(localStorage.getItem("product"));
+    
     // if(p!== null){
   
   // }
@@ -159,7 +161,7 @@ const ProductInfo = () => {
               </select>
             </div>
             <div className="relative">
-    {/* Komponent wybierania ilości produktu */}
+    {/* Komponent wybierania koloru produktu */}
     <select
       className="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1"
       onChange={handleColorChange}
