@@ -30,6 +30,10 @@ const ProductInfo = () => {
           setProduct(response.data);
           localStorage.setItem('product', JSON.stringify(response.data));
           console.log(localStorage.getItem('product'))
+          for (let i = 0; i < response.data.colors; i++) {
+            const letter = String.fromCharCode(firstLetterCharCode + i);
+            quantityOptions.push(letter);
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -40,10 +44,7 @@ const ProductInfo = () => {
     const quantityOptions = [];
     const firstLetterCharCode = 'A'.charCodeAt(0);
     // if(p!== null){
-    for (let i = 0; i < product.colors; i++) {
-      const letter = String.fromCharCode(firstLetterCharCode + i);
-      quantityOptions.push(letter);
-    }
+  
   // }
     // useEffect(() => {
     //   const fetchData = async () => {
