@@ -30,11 +30,13 @@ public class SecurityConfiguration {
 
         return  http
                 .authorizeHttpRequests(auth -> auth
+
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/register").permitAll()
                         .requestMatchers("/products").permitAll()
                         .requestMatchers("/products/**").permitAll()
                         .requestMatchers("/products/*").permitAll()
+                        .requestMatchers("/import").permitAll()
                         /// permits for templates
                         .requestMatchers("/orders/**").permitAll()
                         .requestMatchers("/orders/new-order/**").permitAll()
