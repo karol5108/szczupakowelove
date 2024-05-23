@@ -16,7 +16,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/products")
-@PreAuthorize("permitAll()")
+
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;

@@ -1,17 +1,16 @@
-package pl.edu.wszib.ecom.Dto;
+package pl.edu.wszib.ecom.Request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Service;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegistrationDto {
-    private String username;
-    private String password;
+@Getter
+@Setter
+public class LoginRequest {
     private String email;
+    private String password;
 }
-

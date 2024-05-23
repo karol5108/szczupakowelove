@@ -22,7 +22,7 @@ import java.util.Set;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/orders")
-@PreAuthorize("permitAll()")
+
 public class OrderController {
     private BigDecimal calculateOrderValue(Set<OrderItem> orderItems) {
         BigDecimal orderValue = orderItems.stream().

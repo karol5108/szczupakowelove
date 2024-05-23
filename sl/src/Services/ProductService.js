@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const PRODUCT_API_URL = 'https://szczupakowelove.onrender.com/products'
+// const PRODUCT_API_URL = 'https://szczupakowelove.onrender.com/products'
+const PRODUCT_API_URL = 'http://localhost:8080/products'
 
 class ProductService{
     getAllProducts(){

@@ -18,6 +18,7 @@ const ProductInfo = () => {
     const [quantityInPack, setQuantityInPack] = useState(0);
     const [type, setType] = useState("");
     const [colorsImg, setColorsImg] = useState([]);
+    const [colors, setColors] = useState(1);
 
     // order
     const [order, setOrder] = useState(null);
@@ -25,8 +26,7 @@ const ProductInfo = () => {
     const [color, setColor] = useState("A"); // State dla koloru
     
 
-    const quantityOptions = [];
-    const firstLetterCharCode = 'A'.charCodeAt(0);
+    
     
   
     useEffect(() => {
@@ -44,17 +44,23 @@ const ProductInfo = () => {
           setQuantityInPack(response.data.quantity);
           setType(response.data.type);
           setColorsImg(response.data.colorsImg);
+          setColors(response.data.colors)
           localStorage.setItem('product', JSON.stringify(response.data));
           console.log(localStorage.getItem('product'))
-          for (let i = 0; i < response.data.colors; i++) {
-            const letter = String.fromCharCode(firstLetterCharCode + i);
-            quantityOptions.push(letter);
-          }
+          
         })
         .catch((error) => {
           console.log(error);
         });
     };
+
+
+    const quantityOptions = [];
+    const firstLetterCharCode = 'A'.charCodeAt(0);
+    for (let i = 0; i < colors; i++) {
+      const letter = String.fromCharCode(firstLetterCharCode + i);
+      quantityOptions.push(letter);
+    }
     //const productName = JSON.parse(localStorage.getItem("product")).name;
     ///const p = JSON.parse(localStorage.getItem("product"));
     
@@ -83,7 +89,7 @@ const ProductInfo = () => {
   const handleAddToCart = () => {
 
     if(!localStorage.getItem('orderId')){
-    OrderServiceInstance.newOrder(p.id, quantity, color)
+    OrderServiceInstance.newOrder(id, quantity, color)
       .then((response) => {
         console.log(response.data);
         setOrder(response.data);

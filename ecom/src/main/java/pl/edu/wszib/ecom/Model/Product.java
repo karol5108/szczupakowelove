@@ -1,9 +1,11 @@
 package pl.edu.wszib.ecom.Model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,5 +37,15 @@ public class Product {
 
     private String description;
     private BigDecimal lowest30price;
+
+//    @Nullable
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Rating>ratings = new ArrayList<>();
+//    @Nullable
+//    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL,orphanRemoval = true)
+//    private List<Review>reviews = new ArrayList<>();
+//    @Nullable
+//    @Column(name = "num_ratings")
+//    private int numRatings;
 
 }

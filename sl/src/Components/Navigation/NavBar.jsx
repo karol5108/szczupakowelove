@@ -7,6 +7,8 @@ import OrderServiceInstance from '../../Services/OrderService'
 import ProductImages from '../Product/ProductImages';
 import ShoppingCard from '../Order/ShoppingCard';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
+import AuthModal from '../Auth/AuthModal';
 const navigation = {
 
   pages: [
@@ -27,7 +29,10 @@ export default function Nav() {
   
   const [order, setOrder] = useState();
   const [isShoppingCardOpen, setIsShoppingCardOpen] = useState(false);
-  
+  const [openLogin, setOpenLogin] = useState(false);
+
+  const handleOpenLogin = () => setOpenLogin(true);
+  const handleCloseLogin = () => setOpenLogin(false);
 
 
   useEffect(() => {
@@ -208,9 +213,11 @@ export default function Nav() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                  <Button 
+                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                    onClick={handleOpenLogin}>
                     Zaloguj się
-                  </a>
+                  </Button>
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                   <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     Zarejestruj się 
@@ -273,6 +280,7 @@ export default function Nav() {
           </div>
         </nav>
       </header>
+      <AuthModal handleClose={handleCloseLogin} open={openLogin}/>
     </div>
   )
 }

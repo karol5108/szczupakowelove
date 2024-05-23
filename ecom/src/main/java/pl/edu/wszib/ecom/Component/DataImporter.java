@@ -66,8 +66,8 @@ public class DataImporter {
         Product product = new Product();
         product.setName(row.getCell(1).getStringCellValue());
         product.setType(row.getCell(2).getStringCellValue());
-        product.setImg(row.getCell(3).getStringCellValue());
-        product.setVideo(row.getCell(4).getStringCellValue());
+        product.setImg("img.jpg");
+        product.setVideo("video.mp4");
 
         int colorCount = (int) row.getCell(5).getNumericCellValue();
         product.setColors(colorCount);
