@@ -7,28 +7,7 @@ import pg from './pg.png'
 import a from './a.png'
 import z from './z.png'
 import baner from "./slBANER.png"
-// const items = [
-//     <img src={pt} data-value="1"></img>,
-//     <img src={pg} data-value="2"></img>,
-//     <img src={z} data-value="3"></img>,
-//     <img src={a} data-value="4"></img>,
-// ];
 
-// const Carousel = () => (
-//     <AliceCarousel
-//         autoPlay
-//         autoPlayControls
-//         autoPlayStrategy="none"
-//         autoPlayInterval={3000}
-//         animationDuration={1000}
-//         animationType="fadeout"
-//         infinite
-//         touchTracking={false}
-//         disableDotsControls
-//         disableButtonsControls
-//         items={items}
-//     />
-// );
 const items = [
     { image: pt, link: '/Twarde' },
     { image: pg, link: '/Gumy' },

@@ -61,7 +61,9 @@ const OrderCheckout = () => {
                     {order.lines.map((line) => (
               <div key={line.id} className="w-full flex items-center">
                 <div className="overflow-hidden rounded-lg w-16 h-16 bg-gray-50 border border-gray-200">
-                  <img src={line.product.img} alt={line.product.name} />
+                  <img 
+                  src={`/${line.product.name}/${line.color}.jpg`}
+                  alt={line.product.name} />
                 </div>
                 <div className="flex-grow pl-3">
                   <h6 className="font-semibold uppercase text-gray-600">

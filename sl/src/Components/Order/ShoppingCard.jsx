@@ -69,7 +69,7 @@ const ShoppingCard = ({order, isOpen})  =>{
                               <li key={line.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={line.product.img}
+                                    src={`/${line.product.name}/${line.color}.jpg`}
                                     alt={line.product.description}
                                     className="h-full w-full object-cover object-center"
                                   />
@@ -79,7 +79,7 @@ const ShoppingCard = ({order, isOpen})  =>{
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a href='#'>{line.product.name}  {line.product.size}</a>
+                                        <a href='#'>{line.product.name}  {line.product.size}cm</a>
                                       </h3>
                                       <p className="ml-4">{line.productValue}</p>
                                     </div>

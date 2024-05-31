@@ -61,29 +61,6 @@ const ProductInfo = () => {
       const letter = String.fromCharCode(firstLetterCharCode + i);
       quantityOptions.push(letter);
     }
-    //const productName = JSON.parse(localStorage.getItem("product")).name;
-    ///const p = JSON.parse(localStorage.getItem("product"));
-    
-    // if(p!== null){
-  
-  // }
-    // useEffect(() => {
-    //   const fetchData = async () => {
-    //     try {
-    //       // Pobranie danych z API
-    //       const response = await ProductServiceInstance.getProductById(id);
-    //       // Opóźnienie ustawienia danych o produkcie
-    //       setTimeout(() => {
-    //         setProduct(response.data);
-    //       }, 1000); // Opóźnienie 1000 ms (1 sekunda)
-    //     } catch (error) {
-    //       console.error('Error fetching product:', error);
-    //     }
-    //   };
-  
-    //   fetchData();
-    // }, [id]);
-  
   
   // Funkcja obsługująca dodanie produktu do koszyka
   const handleAddToCart = () => {
@@ -125,8 +102,8 @@ const ProductInfo = () => {
 
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+    <div className="bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6   bg-white">
       <div className="flex flex-col md:flex-row -mx-4">
         <div className="md:flex-1 px-4">
           {/* Komponent wyświetlający obrazy produktu */}

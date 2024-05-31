@@ -21,14 +21,26 @@ public class JwtProvider {
         return jwt;
     }
 
-    public String getEmailFromToken(String jwt){
-        jwt = jwt.substring(7);
+    public String getEmailFromToken(String jwt) {
+        try {
+//            System.out.println("Received JWT: " + jwt);
+//
+//            // Assuming the token starts with "Bearer ", remove the prefix
+//            jwt = jwt.substring(7);
+//
+//            System.out.println("JWT after removing prefix: " + jwt);
 
-        Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
+            Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
 
-        String email = String.valueOf(claims.get("email"));
+            String email = String.valueOf(claims.get("email"));
 
-        return email;
+            return email;
+        } catch (Exception e) {
+            // Log the error or handle it appropriately
+            e.printStackTrace(); // Temporary logging for debugging
+            return null; // Or throw a custom exception
+        }
     }
+
 
 }

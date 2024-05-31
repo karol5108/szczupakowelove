@@ -14,11 +14,11 @@ function HeroHome() {
               />
             </div>
             <p className="sm:mt-8 mt-3 sm:px-10 text-[#10172A] text-4xl sm:text-6xl font-semibold tracking-tighter">
-              TO NOWA MARKA NA RYNKU, KTÓRA KŁADZIE DUŻY NACISK NA 
+              NOWA MARKA NA RYNKU, KTÓRA KŁADZIE DUŻY NACISK NA 
               <span className="underline leading-8 underline-offset-8 decoration-8 decoration-[#8B5CF6]"> JAKOŚĆ, SZCZEGÓŁY I OBSŁUGĘ KLIENTA</span> 
             </p>
             <p className="sm:mt-8 mt-2.5 text-[#10172A] sm:px-72  sm:leading-loose text-lg font-normal tracking-tighter">
-              <span className="font-semibold">Zespół wykfalifikowanych pracowników ściśle kontroluje etapy produckji oraz wprowadza nowe rozwiązania dla różnych metod. </span>
+              <span className="font-semibold">Zespół wykfalifikowanych pracowników ściśle kontroluje etapy produckji oraz wprowadza nowe rozwiązania. </span>
             </p>
           </div>
         </div>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +26,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/auth")
+
 public class AuthController {
 
     @Autowired
@@ -94,6 +96,27 @@ public class AuthController {
             e.printStackTrace();  // Zalogowanie wyjątku
             return new ResponseEntity<>(new AuthResponse(null, "login failed"), HttpStatus.UNAUTHORIZED);
         }
+    }
+    @GetMapping("/user/profile")
+    public ResponseEntity<User> getUserByToken(@RequestHeader("Authorization") String token) {
+        try {
+            // Sprawdzenie poprawności tokena JWT i uzyskanie nazwy użytkownika
+            String username = jwtProvider.getEmailFromToken(token.substring(7)); // Usunięcie prefiksu "Bearer "
+
+            // Pobranie użytkownika na podstawie nazwy użytkownika
+            User user = userRepository.findByEmail(username);
+
+            // Sprawdzenie czy użytkownik istnieje
+            if (user == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Użytkownik nie znaleziony
+            }
+
+            return new ResponseEntity<>(user, HttpStatus.OK); // Zwrócenie użytkownika
+        } catch (Exception e) {
+            e.printStackTrace(); // Zalogowanie wyjątku
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // Błąd uwierzytelniania
+        }
+
     }
 
     public Authentication authenticate(String username, String password) {

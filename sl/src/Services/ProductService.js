@@ -1,20 +1,18 @@
 import axios from "axios";
-
-// const PRODUCT_API_URL = 'https://szczupakowelove.onrender.com/products'
-const PRODUCT_API_URL = 'http://localhost:8080/products'
+import { API_BASE_URL } from "../Config/apiConfig";
 
 class ProductService{
     getAllProducts(){
-            return axios.get(PRODUCT_API_URL)
+            return axios.get(API_BASE_URL + '/products')
     }
     getAllProductsByType(type){
-        return  axios.get(PRODUCT_API_URL + '/' + type)
+        return  axios.get(API_BASE_URL + '/products/' + type)
     }
     getProductByNameAndSize(name,size){
-        return axios.get(PRODUCT_API_URL + '/' + name + '/' + size)
+        return axios.get(API_BASE_URL + '/products/' + name + '/' + size)
     }
     getProductById(id){
-        return axios.get(PRODUCT_API_URL + '/getById/' + id)
+        return axios.get(API_BASE_URL + '/products/getById/' + id)
     }
    
 }

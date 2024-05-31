@@ -1,21 +1,22 @@
 import axios from "axios";
+import { API_BASE_URL } from "../Config/apiConfig";
 
 // const ORDER_API_URL = 'https://szczupakowelove.onrender.com/orders'
-const ORDER_API_URL = 'http://localhost:8080/orders'
+// const ORDER_API_URL = 'http://localhost:8080/orders'
 
 class OrderService{
 
     getOrderById(id){
-        return axios.get(ORDER_API_URL + '/' + id)
+        return axios.get(API_BASE_URL + '/orders/' + id)
     }
     newOrder(id, quantity, color){
-        return axios.post(ORDER_API_URL + '/new-order/' + id + '/' + quantity + '/' + color )
+        return axios.post(API_BASE_URL + '/orders/new-order/' + id + '/' + quantity + '/' + color )
     }
     addToExistOrder(id, quantity, color, orderId){
-        return axios.post(ORDER_API_URL + '/add-to-exist/' + id + '/' + quantity + '/' + color + '/' + orderId )
+        return axios.post(API_BASE_URL + '/orders/add-to-exist/' + id + '/' + quantity + '/' + color + '/' + orderId )
     }
     deleteOrder(id){
-        return axios.delete(ORDER_API_URL + '/' + id)
+        return axios.delete(API_BASE_URL + '/orders/' + id)
     }
    
 }

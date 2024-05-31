@@ -53,3 +53,27 @@ input[type="submit"]:hover {
 .separator:after {
     left: 5px;
 }
+.toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .toggle-button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: lightgray;
+    transition: background-color 0.3s ease;
+  }
+  .toggle-button.active, .toggle-button:hover {
+    background-color: green;
+    color: white;
+  }
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+  }
