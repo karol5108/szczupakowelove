@@ -18,6 +18,9 @@ class OrderService{
     deleteOrder(id){
         return axios.delete(API_BASE_URL + '/orders/' + id)
     }
+    newOrderAuthorizedUser(id, quantity, color, userId){
+        return axios.post(API_BASE_URL + '/orders/new-order/' + id + '/' + quantity + '/' + color + '/' + userId )
+    }
    
 }
 const OrderServiceInstance = new OrderService();

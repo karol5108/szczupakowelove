@@ -12,6 +12,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -21,6 +23,7 @@ import java.util.Set;
 @Entity
 @Table(name= "orders")
 @JsonIgnoreProperties("orderItem")
+
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +44,19 @@ public class Order {
 
     @Column(nullable = false)
     private BigDecimal orderValue;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    private String status;
+
+    private LocalDateTime deliveryDate;
+
+    @OneToOne
+    private Address shippingAddress;
+
+    private Integer discount;
 
 
 

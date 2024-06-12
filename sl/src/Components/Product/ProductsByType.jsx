@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import ProductServiceInstance from '../../Services/ProductService';
 import { Menu } from '@headlessui/react';
-import { store } from '../../State/store';
-import { useDispatch, useSelector } from 'react-redux';
+
+
 const ProductsByType = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const { type } = useParams();
   const [priceFilter, setPriceFilter] = useState(150);
-  const { auth } = useSelector((store) => store);
+
 
   useEffect(() => {
     getProductsByType(type);

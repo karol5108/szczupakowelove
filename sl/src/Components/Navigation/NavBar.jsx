@@ -126,7 +126,12 @@ export default function Nav() {
     dispatch(logout());
     handleCloseUserMenu();
   } 
-
+  const navigateToAddresses = () =>{
+    navigate("/adresy");
+  }
+  const navigateToMyOrders = () =>{
+    navigate("/moje-zamówienia")
+  }
 
   return (
     <div className="bg-white">
@@ -286,8 +291,8 @@ export default function Nav() {
                         'aria-labelledby': 'basic-button',
                       }}
                     >
-                      <MenuItem > Moje zamówienia </MenuItem>
-                      <MenuItem > Adresy </MenuItem>
+                      <MenuItem onClick={navigateToMyOrders}> Moje zamówienia </MenuItem>
+                      <MenuItem onClick={navigateToAddresses} > Adresy </MenuItem>
                       <MenuItem onClick={handleLogout}> WYLOGUJ </MenuItem>
                     </Menu>
                   </div>

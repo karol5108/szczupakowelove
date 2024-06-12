@@ -6,6 +6,8 @@ import ProductImages from './ProductImages';
 import OrderServiceInstance from '../../Services/OrderService';
 import { useCart } from '../../Context/CartContext';
 import ShoppingCard from '../Order/ShoppingCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { store } from '../../State/store';
 const ProductInfo = () => {
     // const [product, setProduct] = useState();
     const { id } = useParams();
@@ -25,7 +27,8 @@ const ProductInfo = () => {
     const [quantity, setQuantity] = useState(1); // State dla ilości
     const [color, setColor] = useState("A"); // State dla koloru
     
-
+    const jwt = localStorage.getItem("jwt")
+    const {auth} = useSelector(store=>store) 
     
     
   
@@ -64,7 +67,30 @@ const ProductInfo = () => {
   
   // Funkcja obsługująca dodanie produktu do koszyka
   const handleAddToCart = () => {
-
+    if(jwt!=null){
+      if(!localStorage.getItem('orderId')){
+        OrderServiceInstance.newOrderAuthorizedUser(id, quantity, color, auth.user.id)
+          .then((response) => {
+            console.log(response.data);
+            setOrder(response.data);
+            localStorage.setItem('orderId', response.data.id)
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        } else{
+          OrderServiceInstance.addToExistOrder(id, quantity, color, localStorage.getItem('orderId'))
+            .then((response) => {
+              console.log(response.data);
+              
+              setOrder(response.data);
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+        }
+    }
+    else{
     if(!localStorage.getItem('orderId')){
     OrderServiceInstance.newOrder(id, quantity, color)
       .then((response) => {
@@ -85,7 +111,7 @@ const ProductInfo = () => {
       .catch((error) => {
           console.log(error);
       });
-    }
+    }}
     
     console.log('Product added to cart:', order);
   };
@@ -111,8 +137,8 @@ const ProductInfo = () => {
         </div>
         <div className="md:flex-1 px-4">
           {/* Komponent wyświetlający szczegóły produktu */}
-          <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{name}</h2>
-          <p className="text-gray-500 text-sm">By <a href="#" className="text-indigo-600 hover:underline">Spinpoler</a></p>
+          <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl text-sm">{name}</h2>
+          <p className="text-gray-500 text-sm">By <a  className="text-indigo-600 hover:underline">Spinpoler</a></p>
           <div className="flex items-center space-x-4 my-4">
             <div>
               {/* Komponent wyświetlający cenę produktu */}

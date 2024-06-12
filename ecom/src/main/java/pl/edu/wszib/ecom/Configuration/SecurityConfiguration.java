@@ -47,10 +47,15 @@ public class SecurityConfiguration {
                                 .requestMatchers("/auth/users").permitAll()
                                 .requestMatchers("auth/signin").permitAll()
                                 .requestMatchers("/auth/user/profile").permitAll()
+                                .requestMatchers("/auth/new-address/**").permitAll()
+                                .requestMatchers("user/address").permitAll()
+                                .requestMatchers("user/addresses/**").permitAll()
+                                .requestMatchers("user/orders/**").permitAll()
                      // products permits
                                 .requestMatchers("/products/**").permitAll()
                      // orders permits
                                 .requestMatchers("/orders/**").permitAll()
+
 
 
                                 .requestMatchers("/import").permitAll()

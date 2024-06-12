@@ -12,6 +12,8 @@ import { store } from './State/store';
 import ProductInfo from './Components/Product/ProductInfo';
 import { CartProvider } from './Context/CartContext';
 import OrderCheckout from './Components/Order/OrderCheckout';
+import { Addresses } from './Components/User/Addresses';
+import UserOrders from './Components/User/UserOrders';
 function App() {
   return (
     <BrowserRouter>
@@ -26,6 +28,8 @@ function App() {
                 <Route path="/:type" element={<ProductsByType />} />
                 <Route path="/info/:id" element={<ProductInfo />} />
                 <Route path="/order" element={<OrderCheckout />} />
+                <Route path="/adresy" element={<Addresses/>} />
+                <Route path='/moje-zamówienia' element={<UserOrders/>} />
               </Routes>
             </div>
             <Footer />

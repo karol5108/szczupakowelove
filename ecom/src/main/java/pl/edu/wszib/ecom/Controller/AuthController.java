@@ -14,13 +14,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.wszib.ecom.Configuration.JwtProvider;
+import pl.edu.wszib.ecom.Exception.ResourceNotFound;
 import pl.edu.wszib.ecom.Exception.UserException;
+import pl.edu.wszib.ecom.Model.Address;
+import pl.edu.wszib.ecom.Model.Product;
 import pl.edu.wszib.ecom.Model.User;
+import pl.edu.wszib.ecom.Repository.AddressRepository;
 import pl.edu.wszib.ecom.Repository.UserRepository;
 import pl.edu.wszib.ecom.Request.LoginRequest;
 import pl.edu.wszib.ecom.Response.AuthResponse;
 import pl.edu.wszib.ecom.Service.UserServiceImplementation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -31,6 +36,9 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
 
     @Autowired
     private JwtProvider jwtProvider;
@@ -66,6 +74,7 @@ public class AuthController {
         createdUser.setPassword(passwordEncoder.encode(password));
         createdUser.setName(firstName);
         createdUser.setLastName(lastName);
+        createdUser.setRole("CUSTOMER");
 
         User savedUser = userRepository.save(createdUser);
 
@@ -119,6 +128,9 @@ public class AuthController {
 
     }
 
+
+    
+
     public Authentication authenticate(String username, String password) {
         // Pobranie szczegółów użytkownika
         UserDetails userDetails = userServiceImplementation.loadUserByUsername(username);
@@ -135,4 +147,5 @@ public class AuthController {
         // Uwierzytelnianie użytkownika
         return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
     }
+
 }
